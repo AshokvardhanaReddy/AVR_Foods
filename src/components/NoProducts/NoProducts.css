@@ -1,0 +1,16 @@
+.empty-cart {
+  width: 100%;
+  margin: 2rem 0rem;
+}
+.empty-cart-image {
+  width: 30%;
+  display: block;
+  margin: auto;
+  opacity: 0.5;
+}
+.empty-cart-heading {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+  opacity: 0.5;
+}
