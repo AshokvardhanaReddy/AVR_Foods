@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import "./MyOrdersPage.css";
 
 import { StoreContext } from "../../context/StoreContext";
@@ -9,17 +9,31 @@ const MyOrdersPage = () => {
   const { url, currency, dot } = useContext(StoreContext);
   let token = true;
   
-  const fetchOrders = async () => {
-    await fetch(`${url}placed_orders`)
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  };
+  // const fetchOrders = async () => {
+  //   await fetch(`${url}placed_orders`)
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data));
+  // };
 
-  useEffect(() => {
-    if (token) {
-      fetchOrders();
-    }
-  }, [token, fetchOrders ]);
+  // useEffect(() => {
+  //   if (token) {
+  //     fetchOrders();
+  //   }
+  // }, [token, fetchOrders ]);
+
+
+const fetchOrders = useCallback(async () => {
+  const response = await fetch(`${url}placed_orders`);
+  const data = await response.json();
+  setData(data);
+}, [url]); // Add `url` as a dependency since it's used in the function
+
+useEffect(() => {
+  if (token) {
+    fetchOrders();
+  }
+}, [token, fetchOrders]); // `fetchOrders` is now stable
+
 
   return (
     <div className="my-orders">
