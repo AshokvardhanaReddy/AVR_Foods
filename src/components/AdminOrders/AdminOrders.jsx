@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext,useCallback, useEffect, useState } from 'react'
 import './AdminOrders.css'
 import parcel_image from "../../assests/parcel_icon.png";
 import { StoreContext } from '../../context/StoreContext';
@@ -7,22 +7,37 @@ const AdminOrders = () => {
   const {url, currency} = useContext(StoreContext);
   const [orders, setOrders] = useState([]);
 
-  const fetchAllOrders = async () => {
-    const response = await fetch(`${url}placed_orders`).then((res)=> res.json()).then((data)=>setOrders(data))
-  }
+  // const fetchAllOrders = async () => {
+  // await fetch(`${url}placed_orders`).then((res)=> res.json()).then((data)=>setOrders(data))
+  // }
 
-  const statusHandler = async (event, orderId) => {
-    const response = fetch(`${url}placed_orders/${orderId}`, {
+  // const statusHandler = async (event, orderId) => {
+  //  fetch(`${url}placed_orders/${orderId}`, {
+  //     method : "PUT",
+  //     headers : {
+  //     "Content-Type" : "application/json"
+  //     },
+  //     body : JSON.stringify({order_status : event.target.value})
+  //   })
+  // }
+
+  const statusHandler = useCallback((event, orderId) => {
+    fetch(`${url}placed_orders/${orderId}`, {
       method : "PUT",
       headers : {
       "Content-Type" : "application/json"
       },
       body : JSON.stringify({order_status : event.target.value})
     })
-  }
+  }, [url]);
+
   useEffect(() => {
+    const fetchAllOrders = async () => {
+      await fetch(`${url}placed_orders`).then((res)=> res.json()).then((data)=>setOrders(data))
+      }
     fetchAllOrders();
-  }, [statusHandler])
+    statusHandler();
+  }, [statusHandler, url])
 
   return (
     <div className='order add'>
