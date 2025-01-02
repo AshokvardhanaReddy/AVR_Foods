@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useState } from "react";
 import { FaCartPlus, FaRegUserCircle, FaShoppingBag } from "react-icons/fa";
 import { TbMenu2, TbLogout } from "react-icons/tb";
 import { IoMdClose } from "react-icons/io";

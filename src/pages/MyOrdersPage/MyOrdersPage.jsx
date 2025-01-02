@@ -19,7 +19,7 @@ const MyOrdersPage = () => {
     if (token) {
       fetchOrders();
     }
-  }, [token]);
+  }, [token, fetchOrders ]);
 
   return (
     <div className="my-orders">

@@ -10,11 +10,14 @@ const PopularItems = ({title, category}) => {
   const {food_list} = useContext(StoreContext)
   const navigate = useNavigate();
 
-  const items_list = food_list.filter((item) => {
-    if(item.category === category){
-      return item;
-    }
-  })
+  // const items_list = food_list.filter((item) => {
+  //   if(item.category === category){
+  //     return item;
+  //   }
+  // })
+
+  const items_list = food_list.filter((item) => item.category === category);
+
 
   const handleShowAll = () => {
       navigate("/products")
