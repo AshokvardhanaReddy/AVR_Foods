@@ -6,7 +6,8 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
-  const url = "https://srfrozenfoods-server.netlify.app/api/";
+  // const url = "https://srfrozenfoods-server.netlify.app/api/";
+  const url = process.env.SERVER_URL;
   const deliveryCharge = 25;
   const currency = `\u20B9\u00A0`;
   const dot = `\u25CF\u00A0`;
