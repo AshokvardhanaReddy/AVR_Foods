@@ -17,8 +17,6 @@ const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState(false);
 
-  const [cartProducts, setCartProducts] = useState([]);
-
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
@@ -75,7 +73,7 @@ const StoreContextProvider = (props) => {
         .then((data) => setFoodList(data));
     }
     loadFoodList();
-  }, []);
+  }, [url]);
 
   const contextValue = {
     url,
