@@ -4,14 +4,14 @@ import close_button from "../../assests/cross_icon.png";
 import { StoreContext } from "../../context/StoreContext";
 
 const LoginPage = ({ setShowLogin }) => {
-  const { setToken, url, loadCartData, userRole, setUserRole } = useContext(StoreContext);
+  const { setToken, url, setUserRole } = useContext(StoreContext);
   const [currState, setCurrState] = useState("Sign Up");
 
   const [data, setData] = useState({
     user_name: "",
     user_id: "",
     user_password: "",
-    user_role : "user"
+    user_role: "user",
   });
 
   const onChangeHandler = (event) => {
@@ -23,11 +23,11 @@ const LoginPage = ({ setShowLogin }) => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    let new_url = url;
+    // let new_url = url;
 
     if (currState === "Sign Up") {
       console.log(data);
-      const response = await fetch(`${url}users`, {
+      await fetch(`${url}users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,39 +38,40 @@ const LoginPage = ({ setShowLogin }) => {
         user_name: "",
         user_id: "",
         user_password: "",
-        user_role : "user"
+        user_role: "user",
       });
     }
-    if(currState === "Login"){
-        const users = await fetch(`${url}users`).then((res) => res.json()).then((data) => data);
-        users.map((user) => {
-            if(data.user_id === user.user_id && data.user_password === user.user_password){
-              if(user.user_role === "admin"){
-                alert("User Role - Admin ");
-                setToken(true);
-                setUserRole(true);
-                setShowLogin(false)
-                return;
-              }else{
-                alert("User Role - Customer");
-                setToken(true);
-                setUserRole(false);
-                setShowLogin(false)
-                return;
-
-              }
-            }
-          
-        })
+    if (currState === "Login") {
+      const users = await fetch(`${url}users`)
+        .then((res) => res.json())
+        .then((data) => data);
+      users.forEach((user) => {
+        if (
+          data.user_id === user.user_id &&
+          data.user_password === user.user_password
+        ) {
+          if (user.user_role === "admin") {
+            alert("User Role - Admin ");
+            setToken(true);
+            setUserRole(true);
+            setShowLogin(false);
+            return ;
+          } else {
+            alert("User Role - Customer");
+            setToken(true);
+            setUserRole(false);
+            setShowLogin(false);
+            return ;
+          }
+        }
+      });
     }
-
 
     if (currState === "Login") {
-      new_url += "/api/user/login";
+      // new_url += "/api/user/login";
     } else {
-      new_url += "/api/user/register";
+      // new_url += "/api/user/register";
     }
-
 
     // const response = await axios.post(new_url, data);
     // if (response.data.success) {
@@ -121,7 +122,7 @@ const LoginPage = ({ setShowLogin }) => {
           />
         </div>
         <button>{currState === "Login" ? "Login" : "Create account"}</button>
-       
+
         {currState === "Login" ? (
           <p>
             Create a new account?{" "}
@@ -139,3 +140,4 @@ const LoginPage = ({ setShowLogin }) => {
 };
 
 export default LoginPage;
+

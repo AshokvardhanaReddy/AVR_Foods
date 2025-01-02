@@ -19,15 +19,15 @@ const AdminPage = () => {
               isActive ? "sidebar-option active" : "sidebar-option"
             }
           >
-            <img src={add_icon} alt="" />
+            <img src={add_icon} alt="add icon" />
             <p>Add Product</p>
           </NavLink>
           <NavLink to="/admin/list-items" className="sidebar-option">
-            <img src={order_icon} alt="" />
+            <img src={order_icon} alt="order icon" />
             <p>List Items</p>
           </NavLink>
           <NavLink to="/admin/customer-orders" className="sidebar-option">
-            <img src={orders_icon} alt="" />
+            <img src={orders_icon} alt="order icon" />
             <p>Orders</p>
           </NavLink>
         </div>

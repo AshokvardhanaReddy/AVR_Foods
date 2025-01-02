@@ -8,14 +8,14 @@ import { MdDeleteForever } from "react-icons/md";
 
 
 const CartPage = () => {
-  const {cartItems, food_list, removeFromCart,getTotalCartAmount,url,currency,deliveryCharge, deleteProductFromCart} = useContext(StoreContext);
+  const {cartItems, food_list,getTotalCartAmount,deliveryCharge, deleteProductFromCart} = useContext(StoreContext);
   const [totalCartProducts, setTotalCartProducts] = useState( Object.keys(cartItems).length)
 
   const navigate = useNavigate();
   
  useEffect(()=>{
   setTotalCartProducts(Object.keys(cartItems).length);
- },[deleteProductFromCart])
+ },[deleteProductFromCart, cartItems])
 
   return (
     <>
@@ -24,11 +24,11 @@ const CartPage = () => {
       <div className="cart-items-title">
         <p>Items</p> <p>Title</p> <p className = "cart-text-center" >Price</p> <p className = "cart-text-center" >Qty</p> <p className = "cart-text-center" >Total</p> <p className = "cart-text-center" >Action</p>
       </div>
-      {food_list.map((item, index) => {
+      {food_list.forEach((item, index) => {
         if (cartItems[item._id]>0) {
           return (<div key={index}>
             <div className="cart-items-title cart-items-item">
-              <img src={item_image} alt="" />
+              <img src={item_image} alt="item img" />
               <p>{item.name}</p>
               <p className = "cart-text-center" > &#8377;&nbsp;{item.price}</p>
               <p className = "cart-item-qty" >{cartItems[item._id]}</p>

@@ -17,7 +17,7 @@ const CheckoutPage = () => {
         phone: ""
     })
 
-    const { getTotalCartAmount, food_list, cartItems, url, setCartItems,currency,deliveryCharge } = useContext(StoreContext);
+    const { getTotalCartAmount, food_list, cartItems, url, setCartItems,deliveryCharge } = useContext(StoreContext);
    let token  = true;
     const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const CheckoutPage = () => {
     const placeOrder = async (e) => {
         e.preventDefault()
         let orderItems = [];
-        food_list.map(((item) => {
+        food_list.forEach(((item) => {
             if (cartItems[item._id] > 0) {
                 let itemInfo = item;
                 itemInfo["quantity"] = cartItems[item._id];
@@ -45,7 +45,7 @@ const CheckoutPage = () => {
             payment_mode : payment
         }
         console.log(orderData);
-          let response = await fetch(`${url}placed_orders`, {
+        await fetch(`${url}placed_orders`, {
             method : "POST",
             headers : {
               "Content-Type" : "application/json"
@@ -64,7 +64,7 @@ const CheckoutPage = () => {
         else if (getTotalCartAmount() === 0) {
             navigate('/cart')
         }
-    }, [token])
+    }, [token, getTotalCartAmount, navigate])
 
     return (
         <form onSubmit={placeOrder} className='place-order'>
@@ -98,11 +98,11 @@ const CheckoutPage = () => {
                 <div className="payment">
                     <h2>Payment Method</h2>
                     <div onClick={() => setPayment("COD")} className="payment-option">
-                        <img src={payment === "COD" ? checked_image : unchecked_image} alt="" />
+                        <img src={payment === "COD" ? checked_image : unchecked_image} alt="cod icon" />
                         <p>COD</p>
                     </div>
                     <div onClick={() => setPayment("CC")} className="payment-option">
-                        <img src={payment === "CC" ? checked_image : unchecked_image} alt="" />
+                        <img src={payment === "CC" ? checked_image : unchecked_image} alt="cc iconn" />
                         <p>Online</p>
                     </div>
                 </div>

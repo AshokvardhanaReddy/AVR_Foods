@@ -6,7 +6,7 @@ import { StoreContext } from "../../context/StoreContext";
 
 const AddItem = () => {
   const [productImage, setProductImage] = useState(false);
-  const {menu_list} = useContext(StoreContext)
+  const {menu_list, url} = useContext(StoreContext)
   const [data, setData] = useState({
     name: "",
     description: "",
@@ -30,8 +30,8 @@ const AddItem = () => {
       image: productImage,
     };
 
-    const url = "https://srfrozenfoods-server.netlify.app/api/products";
-    const productPost = await fetch(url, {
+    // const url = "https://srfrozenfoods-server.netlify.app/api/products";
+    const productPost = await fetch(`${url}products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const AddItem = () => {
               src={
                 !productImage ? upload_image : URL.createObjectURL(productImage)
               }
-              alt="new Product Image"
+              alt="new Product Imag"
             />
           </label>
           <input

@@ -47,7 +47,7 @@ const ListItems = () => {
         {productList.map((item, index) => {
           return (
             <div key={index} className='list-table-format'>
-              <img src={food_image} alt="" />
+              <img src={food_image} alt="food img" />
               <p>{item.name}</p>
               <p className = "list-item-center" >{item.category}</p>
               <p className = "list-item-center">&#8377;&nbsp; {item.price}</p>
