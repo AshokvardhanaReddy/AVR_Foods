@@ -1,8 +1,7 @@
 .header{
-    width : 80%;
     height: 34vw;
     margin: 30px auto;
-    background: url('../../assests/header_img.png') no-repeat;
+    background: url('/header_img.png') no-repeat;
     background-size:contain;
     position: relative;
 }
@@ -12,13 +11,13 @@
     flex-direction: column;
     align-items: start;
     gap: 1.5vw;
-    max-width: 55%;
+    max-width: 50%;
     bottom: 10%;
     left: 6vw;
     animation: fadeIn 3s;
 }
 .header-contents h2{
-    font-weight:900;
+    font-weight:500;
     color: white;
     font-size: max(4.5vw,22px);
 }

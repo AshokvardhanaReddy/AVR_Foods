@@ -1,10 +1,10 @@
 <div align="center">
-<h1>AVR Blogs</h1>
+<h1>AVR Foods</h1>
 </div>
 
 
 <div align="center">
-  <a href="https://avr-blogs.netlify.app/">Live Preview</a>
+  <a href="https://avrfoods.netlify.app/">Live Preview</a>
 </div>
 
 <hr>

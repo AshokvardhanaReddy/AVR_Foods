@@ -1,51 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-*{
-    box-sizing: border-box;
-    margin:0;
-    padding:0
-}
-html{
-    font-size : 16px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+  scroll-behavior: smooth;
 }
 
-body{
-    min-height: 100vh;
-    font-family: "Poppins", serif;
-    background-color: #FCFCFC;
-
+body {
+  min-height: 100vh;
 }
 
-a{
-    text-decoration: none;
-    color:inherit;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.app{
-    width : 80%;
-    margin : auto;
+.app {
+  width: 80%;
+  margin: auto;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
 
-@media screen and (min-width : 1024px){
-    body{
-        font-size : 1rem;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
-@media screen and (min-width : 750px) and (max-width : 1024px){
-    body{
-        font-size : 0.8rem;
-    }
-}
-
-@media screen and (max-width : 750px){
-    body{
-        font-size : 0.87rem;
-    }
+@media (max-width:1050px) {
+  .app {
+    width: 90%;
+  }
 }
